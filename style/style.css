@@ -25,7 +25,7 @@ h3 {
 }
 
 p {
-    font-family: 'inter' ;
+    font-family: 'inter';
     font-size: clamp(10px, 5vw + 3rem, 16px);
     color: #444;
     /* line-height: 1.6; */
@@ -180,7 +180,7 @@ nav ul li {
 
 .footer-logo img {
     width: 100%;
-    max-height: 60px;
+    max-height: auto;
     cursor: pointer;
 }
 
@@ -203,7 +203,7 @@ nav ul li {
 }
 
 /* ----------------------Blog feed page  (Home)-----------------------------------------*/
-/* -------------------Blog feed page  (Home)--------------------------------------------*/
+/* ----------------------Blog feed page (Home)--------------------------------------------*/
 
 .home-heading {
     border-bottom: 2px solid lightgrey;
@@ -246,7 +246,7 @@ nav ul li {
     align-items: center;
     font-family: "Inter", sans-serif;
     font-size: clamp(28px, 1vw + 1rem, 36px);
-    
+
 }
 
 /* -----------------------blog carousel-----------------------------------------------*/
@@ -384,7 +384,7 @@ nav ul li {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     box-sizing: border-box;
     border-radius: 10px;
-   
+
 }
 
 h1 {
@@ -424,11 +424,23 @@ h1 {
     transform: scale(1.05);
 }
 
+.img-container {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    position: relative;
+    
+
+}
+
 .img-container img {
     width: 100%;
-    max-width: 400px;
-    height: 280px;
-
+    height: 100%;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+    position: absolute;
 }
 
 .tags-date {
@@ -461,9 +473,10 @@ h1 {
 .read-more:hover {
     background-color: #c9b79c;
 }
-@media (max-width: 1100px){
+
+@media (max-width: 1100px) {
     .img-container img {
-        width: 100%;
+        max-width: 100%;
 
     }
 
@@ -476,10 +489,6 @@ h1 {
         /* Full-width on smaller screens */
     }
 
-    .img-container img {
-        width: 100%;
-
-    }
 }
 
 /* -----------------Post index.html ( single blog post)--------------------------------- */
@@ -532,7 +541,8 @@ main.blog-brief {
     cursor: pointer;
     position: relative;
 }
-.share-btn:hover{
+
+.share-btn:hover {
     background-color: rgb(240, 184, 80);
 }
 
@@ -580,8 +590,9 @@ main.blog-brief {
     cursor: pointer;
 
 }
-.edit-btn:hover{
-    background-color:  #f4ae4b;
+
+.edit-btn:hover {
+    background-color: #f4ae4b;
 }
 
 #edit-btn {
@@ -882,7 +893,7 @@ button.delete {
     font-size: 16px;
     border-radius: 5px;
     cursor: pointer;
-    
+
 }
 
 button.edit {
@@ -894,7 +905,8 @@ button.delete {
     background-color: #f6c563;
     color: black;
 }
-button.delete:hover{
+
+button.delete:hover {
     background-color: #ae832d;
 
 }
