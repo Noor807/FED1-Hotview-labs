@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HotView Labs create a blog post</title>
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+    <script type="module" src="../js/pages/createblogform.mjs"></script>
+    <script type="module" src="../js/utilz/authorization.mjs"></script>
+    <script type="module" src="../js/utilz/hamburger.mjs"></script>
+
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a class="logo" href="../index.html"><img src="../assets/header-logo.png" alt="hotview labs logo"></a>
+            <div class="hamburger-meny">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+
+            <ul>
+                <ul class="hamburger-hidden" id="admin-container">
+                    <li>
+                        <div class="profile-id">
+                            <img id="avatar" src="../assets/Avatar.png" alt="ligth orange square ">
+                            <p id="user">
+
+                            </p>
+                        </div>
+                    </li>
+                    <li><a class="header-btn" href="../account/register.html">Register</a></li>
+                    <li><a class="header-btn" href="./edit.html">Edit blogs</a></li>
+                    <li><a class="header-btn" href="./create.html">New blog</a></li>
+
+                </ul>
+
+                <li><a id="login" class="header-btn" href="./account/login.html">Login</a></li>
+            </ul>
+
+        </nav>
+    </header>
+    <main>
+
+        <h1 class="create-heading">Create a new Blog Post:</h1>
+
+        <div class="create-blog">
+            <form id="create-blog-form">
+                <input type="hidden" id="blogId" name="blogId" />
+
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title" placeholder="Enter a title here..." required />
+
+                <label for="text-area">Body:</label>
+                <textarea id="text-area" name="text-area" placeholder="Editor body goes here..."></textarea>
+
+                <label for="mediaUrl">Media URL:</label>
+
+                <input type="text" id="mediaUrl" name="mediaUrl" placeholder="Optional" />
+
+                <label for="mediaAlt">Media Alt Text:</label>
+                <input type="text" id="mediaAlt" name="mediaAlt" placeholder="Optional" />
+
+                <div class="tag-container">
+                    <label>Tags:</label>
+                    <div>
+                        <label><input type="checkbox" name="tags" value="Technology" /> Technology</label>
+                        <label><input type="checkbox" name="tags" value="Science" /> Science</label>
+                        <label><input type="checkbox" name="tags" value="News" /> News</label>
+                        <label><input type="checkbox" name="tags" value="Research" /> Research</label>
+                        <label><input type="checkbox" name="tags" value="Education" />Education
+                        </label>
+                        <label><input type="checkbox" name="tags" value=" Development" /> Development</label>
+                        <label><input type="checkbox" name="tags" value="Health" /> Health</label>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit">Submit</button>
+            </form>
+
+
+        </div>
+    </main>
+
+    <footer class="footer-container">
+        <div class="footer-parent">
+            <div class="footer-logo">
+                <a class="logo" href="../index.html"><img src="../assets/header-logo.png"
+                    alt="hotview labs tiny log for footer logo"></a>
+            </div>
+            <div class="social-links">
+                <a href="https://www.facebook.com"><img src="../assets/facebook-icon.png" alt=" image of facebook icon"></a> 
+                <a href="https://www.instagram.com"><img src="../assets/insta-icon.png" alt=" image of instagram icon"></a> 
+                <a href="https://x.com"><img src="../assets/twitter-icon.png" alt=" image of twitter icon"></a> 
+             </div>
+        </div>
+
+        <p class="footer-p">© COPYRIGHT 2024 FED#PE_1 with html/css/js(All rights reserved)</p>
+
+    </footer>
+
+</body>
+
+</html>
