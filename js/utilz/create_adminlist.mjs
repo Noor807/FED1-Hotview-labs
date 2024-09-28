@@ -51,6 +51,7 @@ export function createBlogItem(blogPost) {
   // Create the Edit button
   const editButton = document.createElement("button");
   editButton.id = 'edit-btn';
+  editButton.classList.add('edit-btn')
   editButton.type = "button";
   editButton.value = id; // Set the id as the value for the button
   editButton.textContent = "Edit"; // Set button text

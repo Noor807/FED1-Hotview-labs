@@ -7,7 +7,7 @@
 
 h1 {
     font-family: 'Roboto', sans-serif;
-    font-size: clamp(32px, 1vw + 3rem, 40px);
+    font-size: clamp(32px, 3vw + 1rem, 40px);
     font-weight: 800;
     color: black;
     margin-bottom: 20px;
@@ -16,18 +16,18 @@ h1 {
 h2 {
     font-family: 'Roboto', sans-serif;
     font-weight: 700;
-    font-size: clamp(25px, 1vw + 1rem, 32px);
+    font-size: clamp(25px, 3vw + 1rem, 32px);
 }
 
 h3 {
     font-family: 'Roboto', sans-serif;
     font-weight: 600;
-    font-size: clamp(20px, 1vw + 1rem, 28px);
+    font-size: clamp(20px, 3vw + 1rem, 28px);
 }
 
 p {
     font-family: "Inria Serif", serif;
-    font-size: clamp(10px, 5vw + 3rem, 16px);
+    font-size: clamp(10px, 10vw + 5rem, 16px);
     color: #444;
     /* line-height: 1.6; */
 
@@ -621,6 +621,10 @@ main.blog-brief {
 
 }
 
+#edit-btn:hover {
+    background-color: #f4ae4b;
+}
+
 /* Responsive design for mobile */
 @media (max-width: 768px) {
     .title-wrapper {
@@ -894,21 +898,17 @@ input {
     color: #666;
 }
 
-button.edit,
-button.delete {
+.edit-btn,
+.delete {
     display: block;
     width: 100%;
     max-width: 120px;
     padding: 6px 12px;
+    border: 1px solid black;
     font-size: 16px;
     border-radius: 5px;
     cursor: pointer;
 
-}
-
-button.edit {
-    background-color: #f4ede6;
-    color: black;
 }
 
 button.delete {
