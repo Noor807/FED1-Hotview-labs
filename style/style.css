@@ -53,17 +53,24 @@ nav {
     width: 100%;
     max-width: 95vw;
     display: flex;
-    margin: 0 auto;
     justify-content: space-between;
     align-items: center;
 }
+.navigation-bar{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+
+}
+
 
 .logo img {
     width: 100%;
     max-width: 500px;
 }
 
-nav ul {
+nav  ul {
     list-style: none;
     display: flex;
     gap: 20px;
@@ -72,9 +79,9 @@ nav ul {
     margin: 0;
 }
 
-nav ul li {
+/* nav ul li {
     display: inline-block;
-}
+} */
 
 .header-btn {
     text-decoration: none;
@@ -124,7 +131,7 @@ nav ul li {
         min-height: 60vh;
         display: flex;
         z-index: 99;
-        background-color: rgb(156, 153, 153);
+        background-color:#333;
         width: 100%;
         flex-direction: column;
         gap: 30px;
