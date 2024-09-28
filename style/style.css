@@ -6,26 +6,27 @@
 }
 
 h1 {
-    font-family: 'inter', sans-serif;
-    font-size: clamp(28px, 1vw + 1rem, 36px);
-    color: #333;
+    font-family: 'Roboto', sans-serif;
+    font-size: clamp(32px, 1vw + 3rem, 40px);
+    font-weight: 800;
+    color: black;
     margin-bottom: 20px;
 }
 
 h2 {
-    font-family: 'inter', sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-weight: 700;
     font-size: clamp(25px, 1vw + 1rem, 32px);
 }
 
 h3 {
-    font-family: 'inter', sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-weight: 600;
-    font-size: clamp(20px, 1vw + 1rem, 30px);
+    font-size: clamp(20px, 1vw + 1rem, 28px);
 }
 
 p {
-    font-family: 'inter';
+    font-family: "Inria Serif", serif;
     font-size: clamp(10px, 5vw + 3rem, 16px);
     color: #444;
     /* line-height: 1.6; */
@@ -81,6 +82,7 @@ nav ul li {
     background-color: #ffa421;
     color: black;
     border-radius: 5px;
+    font-weight: 600;
     font-size: 16px;
     transition: background-color 0.3s;
 }
@@ -211,8 +213,7 @@ nav ul li {
     margin-top: 3rem;
     justify-content: center;
     align-items: center;
-    font-family: "Inter", sans-serif;
-    font-size: clamp(28px, 1vw + 1rem, 36px);
+    
 }
 
 .profile-id {
@@ -242,10 +243,10 @@ nav ul li {
     border-bottom: 2px solid lightgrey;
     width: 100%;
     margin-top: 3rem;
-    justify-content: center;
-    align-items: center;
-    font-family: "Inter", sans-serif;
-    font-size: clamp(28px, 1vw + 1rem, 36px);
+    text-align: center;
+    justify-self: center;
+    align-self: center;
+    
 
 }
 
@@ -255,17 +256,18 @@ nav ul li {
 .wrapper-carousel {
     width: 100%;
     max-width: 3000px;
-    background-color: lightgrey;
+    background-color: rgb(54, 52, 52);
     margin: 0 auto;
+    border-radius: 10px;
     margin-top: 4rem;
     text-align: center;
-    font-family: Arial, sans-serif;
+    font-family:'Roboto ', sans-serif;
 }
 
 .wrapper-carousel h2 {
     font-size: 24px;
-    font-weight: 600;
-    color: black;
+    font-weight: 700;
+    color:white;
     margin-bottom: 20px;
 }
 
@@ -302,6 +304,7 @@ nav ul li {
     width: 90%;
     margin: 0 auto;
     padding: 10px 0;
+    height: 100px;
 }
 
 .single-blog-item .read-more {

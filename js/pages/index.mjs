@@ -19,7 +19,6 @@ async function populateBlogItems() {
  const blogContainer = document.getElementById('blog-container')
     async function displayBlogs() {
         const blogs = await getBlogPost();
-     console.log(blogs)
      
         blogs.forEach((blogData) => {
           const blogItem = createBlogItem(blogData);

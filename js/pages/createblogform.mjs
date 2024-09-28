@@ -60,7 +60,6 @@ document
       }
 
       const result = await response.json();
-      console.log("Blog post created successfully:", result);
       alert("Blog post created successfully!");
     } catch (error) {
       console.error("Error:", error);

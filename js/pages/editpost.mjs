@@ -8,7 +8,6 @@ async function displayAdminList() {
   try {
     // Fetch the list of blog posts
     const adminList = await getBlogPost();
-    console.log(adminList);
 
     // Iterate through each blog post in the list
     adminList.forEach((blogPost) => {

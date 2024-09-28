@@ -1,5 +1,5 @@
 import { createBlogContainer } from "../utilz/singlepost.mjs";
-const singleBlogContainer= document.querySelector(".single-blog-container")
+const singleBlogContainer = document.querySelector(".single-blog-container");
 
 function getQueryParameter(id) {
   const urlParams = new URLSearchParams(window.location.search);
@@ -21,31 +21,25 @@ async function getBlogPost(blogId) {
     if (!response.ok) {
       throw new Error("fail to fetch blog post");
     }
-    const blogPost = await response.json()
-    console.log(blogPost);
-const blogItem = createBlogContainer(blogPost.data);
-       singleBlogContainer.appendChild(blogItem);
+    const blogPost = await response.json();
+    const blogItem = createBlogContainer(blogPost.data);
+    singleBlogContainer.appendChild(blogItem);
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
-
 }
 
-getBlogPost(blogId)
-document.addEventListener('DOMContentLoaded', function(){
-async function hideEditBtn(){
+getBlogPost(blogId);
+document.addEventListener("DOMContentLoaded", function () {
+  async function hideEditBtn() {
+    const accessToken = localStorage.getItem("accessToken");
+    const editBtn = document.querySelector(".edit-btn");
 
-
-const accessToken = localStorage.getItem('accessToken');
-const editBtn = document.querySelector('.edit-btn');
-
-if (accessToken) {
-  
-  editBtn.classList.remove('admin-hidden');
-} else {
-  editBtn.classList.add('admin-hidden')
- 
-}
-}
-hideEditBtn()
-})
+    if (accessToken) {
+      editBtn.classList.remove("admin-hidden");
+    } else {
+      editBtn.classList.add("admin-hidden");
+    }
+  }
+  hideEditBtn();
+});
