@@ -64,7 +64,6 @@ nav {
 
 }
 
-
 .logo img {
     width: 100%;
     max-width: 500px;
@@ -78,10 +77,6 @@ nav  ul {
     align-items: center;
     margin: 0;
 }
-
-/* nav ul li {
-    display: inline-block;
-} */
 
 .header-btn {
     text-decoration: none;
@@ -254,7 +249,6 @@ nav  ul {
     justify-self: center;
     align-self: center;
     
-
 }
 
 /* -----------------------blog carousel-----------------------------------------------*/
