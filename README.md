@@ -2,6 +2,23 @@ NoroffFEU/FED1-PE1-Noor807
 
 
 
+
+
+<img width="1124" alt="Screenshot 2024-10-06 at 00 57 02" src="https://github.com/user-attachments/assets/1631b940-1b06-4aed-b5da-32284d335cd6">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #                         HotView Labs
                                  
                                                                        
