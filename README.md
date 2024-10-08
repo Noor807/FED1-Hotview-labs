@@ -65,6 +65,10 @@ The goal is to design and built a responsive application that allows the user to
 
 .Javascript
 
+## Design Link:
+
+https://www.figma.com/design/FwBaYUVj0fuFuTx2GtJFS6/design-project-exam-1?t=e9I6cjOTQHDkTOxG-1
+
 
 
 
