@@ -28,7 +28,7 @@ Client requirement pages
 
 
 
-## Description:
+## Client Requirements:
 The goal is to design and built a responsive application that allows the user to view dynamic blog posts.Some functionality includes:
 
 .Abanner carousel(with 3 latest posts)
