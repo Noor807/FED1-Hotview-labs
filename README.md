@@ -92,17 +92,26 @@ JavaScript (Vanilla):  API integration, form validation, and interactive functio
 API:  For managing and displaying blog content (GET, POST, PUT, DELETE).
 
 
-## Installing
+
+
+## Getting Started
+
+### Installing
 
 This is where you list how to get the project started. It typically just includes telling a person to clone the repo and then to install the dependencies e.g.
 
-Clone the repo:
+1. Clone the repo:
 
-- https://github.com/Noor807/FED1-Noor-Irfan.git
+```bash
+https://github.com/Noor807/FED1-Noor-Irfan.git
+```
 
-Install the dependencies:
+2. Install the dependencies:
 
+```
 npm install
+```
+
 
 
 
