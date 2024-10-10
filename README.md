@@ -69,16 +69,14 @@ The goal is to design and built a responsive application that allows the user to
 
 View and share blog posts.
 
-Navigate through the latest 12 posts in a responsive grid.
-
-Interact with featured posts via the carousel.
+- Navigate through the latest 12 posts in a responsive grid.
+- Interact with featured posts via the carousel.
 
 
 ### For Admins: 
 
-Manage blog posts: Create, read, update, and delete (CRUD) functionality.
-
-Admin Authentication: Post management actions are limited to logged-in admin users.
+- Manage blog posts: Create, read, update, and delete (CRUD) functionality.
+- Admin Authentication: Post management actions are limited to logged-in admin users.
 
 
 
@@ -102,9 +100,17 @@ Live url:
 
 https://pagehotviewlabs.netlify.app
 
+Githhub codes:
+
+https://github.com/Noor807/FED1-Noor-Irfan
+
 Figma:
 
 https://www.figma.com/design/FwBaYUVj0fuFuTx2GtJFS6/design-project-exam-1?t=e9I6cjOTQHDkTOxG-1
+
+Github Kanban boared:
+
+https://github.com/orgs/NoroffFEU/projects/142?classId=ef3a73db-bfdb-43a2-b6fb-132244cde312&assignmentId=e76be328-2aaa-411c-9a8f-196cf3b1a56e&submissionId=6dfb685c-e37e-7cdb-9d42-96c411cc39c7
 
 
 
