@@ -98,7 +98,10 @@ This is where you list how to get the project started. It typically just include
 
 Clone the repo:
 
+- https://github.com/Noor807/FED1-Noor-Irfan.git
+
 Install the dependencies:
+
 npm install
 
 
