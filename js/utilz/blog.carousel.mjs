@@ -1,56 +1,116 @@
-import { createBlogItem } from './createpost.mjs';
-import { getBlogPost } from './get_blog_post.mjs'; // Adjust path as necessary
+import { createBlogItem } from "./createpost.mjs";
+import { getBlogPost } from "./get_blog_post.mjs";
 
-// Fetch the top 3 posts from the blog API
+/**
+ * Fetches the top 3 blog posts from the API.
+ *
+ * @async
+ * @function getTop3Posts
+ * @returns {Promise<Array<Object>>} A promise that resolves to an array of the top 3 blog posts.
+ * @throws {Error} If fetching blog posts fails.
+ */
 async function getTop3Posts() {
   try {
     const blogArray = await getBlogPost();
-    const top3Posts = blogArray.slice(0, 3); // Get the top 3 posts
-    return top3Posts;
+    return blogArray.slice(0, 3);
   } catch (error) {
-    console.error('Error fetching top 3 blog posts:', error);
+    console.error("Error fetching top 3 blog posts:", error);
     throw error;
   }
 }
 
-const blogCarousel = document.getElementById('carousel-item');
-const backButton = document.getElementById('back');
-const nextButton = document.getElementById('next');
+const blogCarousel = document.getElementById("carousel-item");
+const backButton = document.getElementById("back");
+const nextButton = document.getElementById("next");
 
-let currentIndex = 0; // Start at the first post
+let currentIndex = 0;
 let top3Posts = [];
+let autoSlideInterval = null;
 
-// Function to display the current blog post
+/**
+ * Updates the carousel with the blog post at the given index.
+ *
+ * @function updateCarousel
+ * @param {number} index - The index of the blog post to display.
+ * @returns {void}
+ */
 function updateCarousel(index) {
-  blogCarousel.innerHTML = ''; // Clear the existing content
-
-  const blogElement = createBlogItem(top3Posts[index]); // Create the blog item
-  blogCarousel.appendChild(blogElement); // Add the new blog item
+  blogCarousel.innerHTML = "";
+  const blogElement = createBlogItem(top3Posts[index]);
+  blogCarousel.appendChild(blogElement);
 }
 
-// Function to handle the 'Back' button click
+/**
+ * Handles the "Back" button click.
+ * Cycles to the previous blog post in the carousel.
+ *
+ * @function handleBackClick
+ * @returns {void}
+ */
 function handleBackClick() {
-  currentIndex = (currentIndex === 0) ? top3Posts.length - 1 : currentIndex - 1; // Loop back to the last post
+  currentIndex = currentIndex === 0 ? top3Posts.length - 1 : currentIndex - 1;
   updateCarousel(currentIndex);
+  resetAutoSlide();
 }
 
-// Function to handle the 'New' (Next) button click
+/**
+ * Handles the "Next" button click.
+ * Cycles to the next blog post in the carousel.
+ *
+ * @function handleNextClick
+ * @returns {void}
+ */
 function handleNextClick() {
-  currentIndex = (currentIndex === top3Posts.length - 1) ? 0 : currentIndex + 1; // Loop back to the first post
+  currentIndex = currentIndex === top3Posts.length - 1 ? 0 : currentIndex + 1;
   updateCarousel(currentIndex);
+  resetAutoSlide();
 }
 
-// Fetch and display the top 3 posts
+/**
+ * Starts the auto-slide feature for the carousel.
+ *
+ * @function startAutoSlide
+ * @param {number} intervalMs - Interval in milliseconds for auto-slide.
+ * @returns {void}
+ */
+function startAutoSlide(intervalMs = 5000) {
+  autoSlideInterval = setInterval(() => {
+    handleNextClick();
+  }, intervalMs);
+}
+
+/**
+ * Resets the auto-slide timer whenever a manual navigation occurs.
+ *
+ * @function resetAutoSlide
+ * @returns {void}
+ */
+function resetAutoSlide() {
+  if (autoSlideInterval) {
+    clearInterval(autoSlideInterval);
+  }
+  startAutoSlide();
+}
+
+/**
+ * Initializes the carousel by fetching and displaying the top 3 blog posts.
+ * Also attaches event listeners for navigation and starts auto-slide.
+ *
+ * @async
+ * @function displayTop3Posts
+ * @returns {Promise<void>}
+ */
 async function displayTop3Posts() {
   try {
-    top3Posts = await getTop3Posts(); // Fetch top 3 posts
-    updateCarousel(currentIndex); // Display the first post initially
+    top3Posts = await getTop3Posts();
+    updateCarousel(currentIndex);
 
-    // Attach event listeners to buttons
-    backButton.addEventListener('click', handleBackClick);
-    nextButton.addEventListener('click', handleNextClick);
+    backButton.addEventListener("click", handleBackClick);
+    nextButton.addEventListener("click", handleNextClick);
+
+    startAutoSlide(); // Start auto-slide
   } catch (error) {
-    console.error('Error displaying top 3 blog posts:', error);
+    console.error("Error displaying top 3 blog posts:", error);
   }
 }
 
