@@ -1,21 +1,28 @@
+/**
+ * Event listener for creating a new blog post.
+ *
+ * - Collects and validates form data (title, body, tags, media).
+ * - Ensures the user is logged in with valid credentials.
+ * - Sends a POST request to the Noroff API to create a blog post.
+ * - Provides feedback via alerts on success or failure.
+ */
 document
   .getElementById("create-blog-form")
   .addEventListener("submit", async function (e) {
-    e.preventDefault(); // Prevent the form from submitting the traditional way
+    e.preventDefault();
 
-    // Get the values from the form
-    const title = document.getElementById("title").value;
-    const body = document.getElementById("text-area").value;
-    const mediaUrl = document.getElementById("mediaUrl").value;
-    const mediaAlt = document.getElementById("mediaAlt").value;
+    const title = document.getElementById("title").value.trim();
+    const body = document.getElementById("text-area").value.trim();
+    const mediaUrl = document.getElementById("mediaUrl").value.trim();
+    const mediaAlt = document.getElementById("mediaAlt").value.trim();
+
     const selectedTags = Array.from(
       document.querySelectorAll("input[name='tags']:checked")
     ).map((tag) => tag.value);
 
-    // Create the blog post object based on the structure
     const blogPost = {
-      title: title,
-      body: body,
+      title,
+      body,
       tags: selectedTags,
     };
 
@@ -26,15 +33,13 @@ document
       };
     }
 
-    // Get the username from local storage
-    const username = localStorage.getItem("adminUser");
-    if (!username) {
-      alert("Username is not available in local storage.");
+    const userData = localStorage.getItem("adminUser");
+    if (!userData) {
+      alert("User is not logged in.");
       return;
     }
 
-    const admin = JSON.parse(username);
-
+    const admin = JSON.parse(userData);
     if (!admin || !admin.name || !admin.accessToken) {
       alert("Invalid user data.");
       return;
@@ -54,12 +59,12 @@ document
       );
 
       if (!response.ok) {
-        const errorData = await response.json(); // Try to get error details from the response
+        const errorData = await response.json();
         console.error("Error details:", errorData);
         throw new Error("Failed to create blog post: " + errorData.message);
       }
 
-      const result = await response.json();
+      await response.json();
       alert("Blog post created successfully!");
     } catch (error) {
       console.error("Error:", error);
