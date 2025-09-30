@@ -1,49 +1,63 @@
-document.addEventListener('DOMContentLoaded', function(){
+document.addEventListener("DOMContentLoaded", () => {
+  /**
+   * Updates the login/logout button and user UI elements
+   * depending on authentication status.
+   *
+   * - If logged in: shows Logout, user name, avatar, and admin panel.
+   * - If not logged in: shows Login and hides admin panel.
+   *
+   * @function updateLoginLogoutButton
+   * @returns {void}
+   */
+  function updateLoginLogoutButton() {
+    const accessToken = localStorage.getItem("accessToken");
+    const adminUser = JSON.parse(localStorage.getItem("adminUser"));
 
-    function updateLoginLogoutButton() {
-    const accessToken = localStorage.getItem('accessToken');
-    const adminUser  = JSON.parse(localStorage.getItem('adminUser'));
-    const user = document.getElementById('user');
-    const adminAvatar = document.getElementById('avatar');
-    const hamburgerMeny= document.querySelector('.hamburger-meny');
-    
-    
-    const loginLogoutButton = document.getElementById('login');
-    const adminContainer = document.getElementById('admin-container');
-    
-    if (accessToken) {
-      hamburgerMeny.classList.remove('admin-burger')
-      // User is logged in, show 'Logout' button across all pages
-      loginLogoutButton.textContent = 'Logout';
-      loginLogoutButton.href = ''
-      loginLogoutButton.onclick = function() {
-        handleLogout();
-      };
-      adminAvatar.src = adminUser.avatar.url
-      adminAvatar.alt = adminUser.avatar.alt
-      user.textContent = adminUser.name
-      adminContainer.classList.remove('admin-hidden')
-      
+    const user = document.getElementById("user");
+    const adminAvatar = document.getElementById("avatar");
+    const hamburgerMeny = document.querySelector(".hamburger-meny");
+    const loginLogoutButton = document.getElementById("login");
+    const adminContainer = document.getElementById("admin-container");
+
+    if (accessToken && adminUser) {
+      // User is logged in
+      hamburgerMeny.classList.remove("admin-burger");
+
+      loginLogoutButton.textContent = "Logout";
+      loginLogoutButton.href = "#";
+      loginLogoutButton.onclick = handleLogout;
+
+      if (adminUser.avatar) {
+        adminAvatar.src = adminUser.avatar.url || "";
+        adminAvatar.alt = adminUser.avatar.alt || "User avatar";
+      }
+
+      user.textContent = adminUser.name || "Admin";
+      adminContainer.classList.remove("admin-hidden");
     } else {
-      hamburgerMeny.classList.add('admin-burger')
-        adminContainer.classList.add('admin-hidden')
-       
-      // User is not logged in, show 'Login' button across all pages
-      loginLogoutButton.textContent = 'Login';
-    
+      // User is not logged in
+      hamburgerMeny.classList.add("admin-burger");
+      adminContainer.classList.add("admin-hidden");
+
+      loginLogoutButton.textContent = "Login";
+      loginLogoutButton.href = "login.html";
+      loginLogoutButton.onclick = null;
     }
   }
-  updateLoginLogoutButton()
-  
-  function handleLogout() {
-    // Logout logic: remove accessToken and redirect to homepage
-    alert('you are logout')
-    localStorage.removeItem('accessToken');
-    window.location.href = 'index.html'; // Redirect to homepage after logout
-  }
-  
-  // Run the update function on page load
-  
 
-})
-  
+  /**
+   * Logs out the current user by clearing storage and redirecting.
+   *
+   * @function handleLogout
+   * @returns {void}
+   */
+  function handleLogout() {
+    alert("You have been logged out.");
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("adminUser");
+    window.location.href = "index.html";
+  }
+
+  // Run on page load
+  updateLoginLogoutButton();
+});
