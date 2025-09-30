@@ -5,16 +5,22 @@ const nameInput = document.querySelector("#name-input");
 const emailInput = document.querySelector("#email-input");
 const passwordInput = document.querySelector("#password-input");
 
-// Listen for the form submission event
 registrationForm.addEventListener("submit", (event) => {
   event.preventDefault();
-  registerUser(); // Call the function to register the user
+  registerUser();
 });
 
+/**
+ * Registers a new user by sending their name, email, and password to the API.
+ *
+ * @async
+ * @function registerUser
+ * @returns {Promise<void>} Resolves when the registration process completes.
+ */
 async function registerUser() {
-  const name = nameInput.value;
-  const email = emailInput.value;
-  const password = passwordInput.value;
+  const name = nameInput.value.trim();
+  const email = emailInput.value.trim();
+  const password = passwordInput.value.trim();
 
   try {
     const customOptions = {
@@ -22,11 +28,7 @@ async function registerUser() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        name: name,
-        email: email,
-        password: password,
-      }),
+      body: JSON.stringify({ name, email, password }),
     };
 
     const response = await fetch(REGISTER_API_ENDPOINT, customOptions);
@@ -35,9 +37,10 @@ async function registerUser() {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
 
-    const json = await response.json();
-    alert("Registration successful");
+    await response.json();
+    alert("Registration successful!");
   } catch (error) {
     console.error("Registration failed:", error);
+    alert("Registration failed. Please try again.");
   }
 }

@@ -1,87 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HotView Labs Registeration</title>
-    <link rel="stylesheet" href="../style/style.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="../style/style.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
-        href="https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-        rel="stylesheet">
+      href="https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
     <script type="module" src="./register.mjs"></script>
     <script type="module" src="../js/utilz/authorization.mjs"></script>
     <script type="module" src="../js/utilz/hamburger.mjs"></script>
+  </head>
 
-</head>
-
-<body>
+  <body>
     <header>
+      <nav>
+        <a class="logo" href="../index.html"
+          ><img src="../assets/header-logo.png" alt="hotview labs logo"
+        /></a>
+        <div class="hamburger-meny">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
 
-        <nav>
-            <a class="logo" href="../index.html"><img src="../assets/header-logo.png" alt="hotview labs logo"></a>
-            <div class="hamburger-meny">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
+        <div class="navigation-bar">
+          <ul class="hamburger-hidden" id="admin-container">
+            <li>
+              <div class="profile-id">
+                <img
+                  id="avatar"
+                  src="../assets/Avatar.png"
+                  alt="ligth orange square "
+                />
+                <p id="user"></p>
+              </div>
+            </li>
+            <li>
+              <a class="header-btn" href="./register.html">Register Here</a>
+            </li>
+            <li>
+              <a class="header-btn" href="../post/edit.html">Edit blogs</a>
+            </li>
+            <li>
+              <a class="header-btn" href="../post/create.html">New blog</a>
+            </li>
+          </ul>
 
-            <div class="navigation-bar">
-                <ul class="hamburger-hidden" id="admin-container">
-                    <li>
-                        <div class="profile-id">
-                            <img id="avatar" src="../assets/Avatar.png" alt="ligth orange square ">
-                            <p id="user">
-
-                            </p>
-                        </div>
-                    </li>
-                    <li><a class="header-btn" href="./register.html">Register Here</a></li>
-                    <li><a class="header-btn" href="../post/edit.html">Edit blogs</a></li>
-                    <li><a class="header-btn" href="../post/create.html">New blog</a></li>
-
-                </ul>
-
-               <a id="login" class="header-btn" href="./login.html">Login</a>
-            </div>
-
-        </nav>
+          <a id="login" class="header-btn" href="./login.html">Login</a>
+        </div>
+      </nav>
     </header>
     <main class="login-main">
-        <h1 class="register-here">Register here:</h1>
-        <div class="form-container">
-            <form id="registration-form">
-                <label for="name-input">Name:</label>
-                <input id="name-input" type="text" placeholder="your name">
-                <label for="email-input">Email:</label>
-                <input id="email-input" type="email" placeholder="enter your email">
-                <label for="password-input">Password:</label>
-                <input id="password-input" type="password" placeholder="enter your password">
-                <p class="login-here">Have already an account? Login here</p>
-                <button type="submit">Submit</button>
-            </form>
-        </div>
+      <h1 class="register-here">Register here:</h1>
+      <div class="form-container">
+        <form id="registration-form">
+          <label for="name-input">Name:</label>
+          <input id="name-input" type="text" placeholder="your name" />
+          <label for="email-input">Email:</label>
+          <input id="email-input" type="email" placeholder="enter your email" />
+          <label for="password-input">Password:</label>
+          <input
+            id="password-input"
+            type="password"
+            placeholder="enter your password"
+          />
+          <p class="login-here">Have already an account? Login here</p>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
     </main>
 
     <footer class="footer-container">
-        <div class="footer-parent">
-            <div class="footer-logo">
-                <a class="logo" href="../index.html"><img src="../assets/header-logo.png"
-                    alt="hotview labs tiny log for footer logo"></a>
-            </div>
-            <div class="social-links">
-                <a href="https://www.facebook.com"><img src="../assets/facebook-icon.png" alt=" image of facebook icon"></a> 
-                <a href="https://www.instagram.com"><img src="../assets/insta-icon.png" alt=" image of instagram icon"></a> 
-                <a href="https://x.com"><img src="../assets/twitter-icon.png" alt=" image of twitter icon"></a> 
-             </div>
+      <div class="footer-parent">
+        <div class="footer-logo">
+          <a class="logo" href="../index.html"
+            ><img
+              src="../assets/header-logo.png"
+              alt="hotview labs tiny log for footer logo"
+          /></a>
         </div>
+        <div class="social-links">
+          <a href="https://www.facebook.com"
+            ><img
+              src="../assets/facebook-icon.png"
+              alt=" image of facebook icon"
+          /></a>
+          <a href="https://www.instagram.com"
+            ><img src="../assets/insta-icon.png" alt=" image of instagram icon"
+          /></a>
+          <a href="https://x.com"
+            ><img src="../assets/twitter-icon.png" alt=" image of twitter icon"
+          /></a>
+        </div>
+      </div>
 
-        <p class="footer-p">© COPYRIGHT 2024 FED#PE_1 with html/css/js(All rights reserved)</p>
-
+      <p class="footer-p">
+        © COPYRIGHT 2024 FED#PE_1 with html/css/js(All rights reserved)
+      </p>
     </footer>
-
-</body>
-
+  </body>
 </html>
