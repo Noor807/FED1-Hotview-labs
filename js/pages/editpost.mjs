@@ -1,21 +1,22 @@
 import { getBlogPost } from "../utilz/get_blog_post.mjs";
-import { createBlogItem } from "../utilz/create_adminlist.mjs"; // Import your createBlogItem function
+import { createBlogItem } from "../utilz/create_adminlist.mjs";
 
-// Assuming you have a container for displaying the blog items
 const blogListContainer = document.querySelector(".adminlist-container");
+const submitButton = document.querySelector(".submit");
 
+/**
+ * Fetches blog posts and renders them inside the admin list container.
+ *
+ * @async
+ * @function displayAdminList
+ * @returns {Promise<void>} Resolves when blog posts are fetched and displayed.
+ */
 async function displayAdminList() {
   try {
-    // Fetch the list of blog posts
     const adminList = await getBlogPost();
 
-    // Iterate through each blog post in the list
     adminList.forEach((blogPost) => {
-      // Extract the necessary data for each blog post
-
       const blogData = createBlogItem(blogPost);
-
-      // Append the blog item to the container
       blogListContainer.appendChild(blogData);
     });
   } catch (error) {
@@ -24,24 +25,34 @@ async function displayAdminList() {
 }
 
 displayAdminList();
-const submitbutton = document.querySelector('.submit')
-submitbutton.addEventListener('click' , async function(event){
-event.preventDefault()
 
-  const accessToken = localStorage.getItem('accessToken')
-  const blogId = document.getElementById('blog-id').value
-  const title = document.getElementById("title").value;
-  const body = document.getElementById("text-area").value;
-  const mediaUrl = document.getElementById("mediaUrl").value;
-  const mediaAlt = document.getElementById("mediaAlt").value;
+/**
+ * Handles the form submission for editing an existing blog post.
+ *
+ * @async
+ * @function handleEditBlogPost
+ * @param {Event} event - The form submission event.
+ * @returns {Promise<void>} Resolves when the blog post update process is complete.
+ */
+async function handleEditBlogPost(event) {
+  event.preventDefault();
+
+  const accessToken = localStorage.getItem("accessToken");
+  const blogId = document.getElementById("blog-id").value.trim();
+
+  const title = document.getElementById("title").value.trim();
+  const body = document.getElementById("text-area").value.trim();
+  const mediaUrl = document.getElementById("mediaUrl").value.trim();
+  const mediaAlt = document.getElementById("mediaAlt").value.trim();
+
   const selectedTags = Array.from(
     document.querySelectorAll("input[name='tags']:checked")
   ).map((tag) => tag.value);
 
-  // Create the blog post object based on the structure
+  /** @type {Object} blogPost */
   const blogPost = {
-    title: title,
-    body: body,
+    title,
+    body,
     tags: selectedTags,
   };
 
@@ -66,18 +77,16 @@ event.preventDefault()
     );
 
     if (!response.ok) {
-      const errorData = await response.json(); // Try to get error details from the response
+      const errorData = await response.json();
       console.error("Error details:", errorData);
-      throw new Error("Failed to create blog post: " + errorData.message);
+      throw new Error("Failed to edit blog post: " + errorData.message);
     }
-
 
     alert("Blog post successfully edited!");
   } catch (error) {
-    console.error("Error:", error);
-    alert("Failed to create blog post: " + error.message);
+    console.error("Error editing blog post:", error);
+    alert("Failed to edit blog post: " + error.message);
   }
+}
 
-})
-
-
+submitButton.addEventListener("click", handleEditBlogPost);

@@ -1,30 +1,26 @@
+import { getBlogPost } from "../utilz/get_blog_post.mjs";
+import { createBlogItem } from "../utilz/createpost.mjs";
 
-// Assuming getBlogPost and createBlogItem are exported from the same or different files
-import { getBlogPost } from '../utilz/get_blog_post.mjs';  // Adjust the import path as needed
-import { createBlogItem } from '../utilz/createpost.mjs';  // Adjust the import path as needed
+const blogContainer = document.getElementById("blog-container");
 
-async function populateBlogItems() {
+/**
+ * Fetches blog posts and displays them inside the blog container.
+ *
+ * @async
+ * @function displayBlogs
+ * @returns {Promise<void>} Resolves when blog posts are fetched and rendered.
+ */
+async function displayBlogs() {
   try {
-    // const blogData = await getBlogPost(); // Fetch blog posts from API
+    const blogs = await getBlogPost();
 
-    
+    blogs.forEach((blogData) => {
+      const blogItem = createBlogItem(blogData);
+      blogContainer.appendChild(blogItem);
+    });
   } catch (error) {
-    console.error('Error populating blog items:', error);
+    console.error("Error displaying blogs:", error);
   }
 }
 
-// Call the function to populate the blog items
-//  populateBlogItems();
-
- const blogContainer = document.getElementById('blog-container')
-    async function displayBlogs() {
-        const blogs = await getBlogPost();
-     
-        blogs.forEach((blogData) => {
-          const blogItem = createBlogItem(blogData);
-          blogContainer.appendChild(blogItem);
-        });
-      }
-     
-      displayBlogs();
-
+displayBlogs();
