@@ -1,89 +1,94 @@
 import { social_blogs_API_ENDPOINT } from "../../scripts/api.mjs";
-const accessToken = localStorage.getItem('accessToken')
 
+const accessToken = localStorage.getItem("accessToken");
+
+/**
+ * Creates a blog item DOM element for displaying in the admin blog list.
+ *
+ * @param {Object} blogPost - The blog post data.
+ * @param {Object[]} [blogPost.media] - Optional media array.
+ * @param {string} blogPost.title - The title of the blog post.
+ * @param {Object} blogPost.author - The author object containing `name`.
+ * @param {string} blogPost.created - The creation date of the blog post.
+ * @param {string} blogPost.id - The ID of the blog post.
+ * @returns {HTMLElement} The constructed blog item element.
+ */
 export function createBlogItem(blogPost) {
   const { media, title, author, created, id } = blogPost;
-  // Create the main blog-item div
+
+  // Main blog-item container
   const blogItem = document.createElement("div");
   blogItem.classList.add("blog-item");
 
-  // Create the img element
+  // Blog image
   const imgElement = document.createElement("img");
   imgElement.src =
-    media && media.url
-      ? media.url
-      : "https://media.istockphoto.com/id/1356933529/photo/futuristic-technology-wave-digital-cyberspace-abstract-wave-with-moving-particles-on.jpg?s=2048x2048&w=is&k=20&c=mQlLO3TqcbeiYTZPiCmsc0Tff-hIGsYwEFzCu272T8M="; // Set image source, fallback to empty if not provided
+    media?.url ||
+    "https://media.istockphoto.com/id/1356933529/photo/futuristic-technology-wave-digital-cyberspace-abstract-wave-with-moving-particles-on.jpg?s=2048x2048&w=is&k=20&c=mQlLO3TqcbeiYTZPiCmsc0Tff-hIGsYwEFzCu272T8M=";
   imgElement.alt =
-    media && media.alt
-      ? media.alt
-      : "technology-wave-digital-cyberspace-abstract-wave-with-moving-particles";
-
-  // Append img to blog-item
+    media?.alt ||
+    "technology-wave-digital-cyberspace-abstract-wave-with-moving-particles";
   blogItem.appendChild(imgElement);
 
-  // Create the blog-info div
+  // Blog info container
   const blogInfo = document.createElement("div");
   blogInfo.classList.add("blog-info");
 
-  // Create the title element (h3)
+  // Title element
   const titleElement = document.createElement("h3");
-  titleElement.textContent = title || "Untitled"; // Set the title, fallback to 'Untitled'
+  titleElement.textContent = title || "Untitled";
 
-  // Create the author paragraph
+  // Author element
   const authorElement = document.createElement("p");
   authorElement.classList.add("author");
-  authorElement.textContent = author.name || "author"; // Set the author, fallback to 'Unknown Author'
+  authorElement.textContent = author?.name || "Unknown Author";
 
-  // Create the date paragraph
+  // Date element
   const dateElement = document.createElement("p");
   dateElement.classList.add("date");
-  dateElement.textContent = created.slice(0, 10) || "Unknown Date"; // Set the date, fallback to 'Unknown Date'
+  dateElement.textContent = created?.slice(0, 10) || "Unknown Date";
 
-  // Append title, author, and date to blog-info
+  // Append title, author, and date
   blogInfo.appendChild(titleElement);
   blogInfo.appendChild(authorElement);
   blogInfo.appendChild(dateElement);
 
-  // Create the button wrapper div
+  // Button wrapper
   const btnWrapper = document.createElement("div");
   btnWrapper.classList.add("btn-wrapper");
 
-  // Create the Edit button
+  // Edit button
   const editButton = document.createElement("button");
-  editButton.id = 'edit-btn';
-  editButton.classList.add('edit-btn')
+  editButton.id = "edit-btn";
+  editButton.classList.add("edit-btn");
   editButton.type = "button";
-  editButton.value = id; // Set the id as the value for the button
-  editButton.textContent = "Edit"; // Set button text
-  editButton.addEventListener("click", async function () {
+  editButton.value = id;
+  editButton.textContent = "Edit";
+
+  editButton.addEventListener("click", async () => {
     try {
       const response = await fetch(
         `https://v2.api.noroff.dev/blog/posts/Noor_irfan/${id}`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
+        { method: "GET", headers: { "Content-Type": "application/json" } }
       );
 
-      if (!response.ok) {
-        throw new Error("Failed to fetch the blog post");
-      }
+      if (!response.ok) throw new Error("Failed to fetch the blog post");
 
-      const blogPost = await response.json();
-     document.getElementById('blog-id').value = blogPost.data.id
-      document.getElementById("title").value = blogPost.data.title;
-      document.getElementById("text-area").value = blogPost.data.body;
+      const blogPostData = await response.json();
+
+      document.getElementById("blog-id").value = blogPostData.data.id;
+      document.getElementById("title").value = blogPostData.data.title;
+      document.getElementById("text-area").value = blogPostData.data.body;
       document.getElementById("mediaUrl").value =
-        blogPost.data.media?.url || "";
+        blogPostData.data.media?.url || "";
       document.getElementById("mediaAlt").value =
-        blogPost.data.media?.alt || "";
+        blogPostData.data.media?.alt || "";
 
-      const tags = blogPost.data.tags || [];
+      const tags = blogPostData.data.tags || [];
       document.querySelectorAll('input[name="tags"]').forEach((checkbox) => {
         checkbox.checked = tags.includes(checkbox.value);
       });
+
       window.location.href = "#create-blog-form";
     } catch (error) {
       console.error("Error fetching blog post:", error);
@@ -91,56 +96,47 @@ export function createBlogItem(blogPost) {
     }
   });
 
-  // Create the Delete button
+  // Delete button
   const deleteButton = document.createElement("button");
   deleteButton.classList.add("delete");
   deleteButton.type = "button";
-  deleteButton.value = id; // Set the id as the value for the button
-  deleteButton.textContent = "Delete"; // Set button text
-  deleteButton.addEventListener("click", async function(){
-    const confirmation = confirm("Are you sure you want to delete this blog post?");
-    
-    if (confirmation) {
-      try {
-        const response = await fetch(
-          `https://v2.api.noroff.dev/blog/posts/Noor_irfan/${id}`,
-          {
-            method: "DELETE",
-            headers: {
-              Authorization: `Bearer ${accessToken}`,
-              "Content-Type": "application/json",
-            },
-          }
-        );
-  
-        if (!response.ok) {
-          throw new Error("Failed to delete the blog post");
-        }
-  
-        blogItem.remove(); // Assuming blogItem is a reference to the DOM element for the blog post.
-        alert("Blog post has been removed");
-      } catch (error) {
-        console.error("Error deleting the blog post:", error);
-        alert("Error deleting the blog post");
-      }
-    } else {
-      alert("Blog post deletion canceled.");
-    }
+  deleteButton.value = id;
+  deleteButton.textContent = "Delete";
 
-  })
-  
-  // Append buttons to button wrapper
+  deleteButton.addEventListener("click", async () => {
+    const confirmation = confirm(
+      "Are you sure you want to delete this blog post?"
+    );
+
+    if (!confirmation) return alert("Blog post deletion canceled.");
+
+    try {
+      const response = await fetch(
+        `https://v2.api.noroff.dev/blog/posts/Noor_irfan/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (!response.ok) throw new Error("Failed to delete the blog post");
+
+      blogItem.remove();
+      alert("Blog post has been removed");
+    } catch (error) {
+      console.error("Error deleting the blog post:", error);
+      alert("Error deleting the blog post");
+    }
+  });
+
+  // Append buttons and info
   btnWrapper.appendChild(editButton);
   btnWrapper.appendChild(deleteButton);
-
-  // Append the button wrapper to blog-info
   blogInfo.appendChild(btnWrapper);
-
-  // Append blog-info to blog-item
   blogItem.appendChild(blogInfo);
 
-  // Return the constructed blog-item
   return blogItem;
 }
-
- 

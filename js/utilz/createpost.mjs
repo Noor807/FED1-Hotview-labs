@@ -1,60 +1,74 @@
+/**
+ * Creates a single blog item element for carousel or list display.
+ *
+ * @param {Object} blogData - Blog post data.
+ * @param {string} blogData.id - The unique ID of the blog post.
+ * @param {string} blogData.title - The title of the blog post.
+ * @param {string} blogData.body - The body text of the blog post.
+ * @param {Object} [blogData.media] - Optional media object containing URL and alt text.
+ * @param {string} blogData.media.url - Image URL.
+ * @param {string} blogData.media.alt - Image alt text.
+ * @param {string} blogData.created - Blog creation date.
+ * @param {string[]} [blogData.tags] - Array of tags for the blog post.
+ * @param {Object} blogData.author - Author object (optional).
+ * @returns {HTMLElement} The constructed blog item element.
+ */
 export function createBlogItem(blogData) {
-  // Create the blog item container
-  const { id, title, body, media = {}, created, tags, author } = blogData;
-  const blogItem = document.createElement("div");
-  blogItem.classList.add('single-blog-item', 'carousel-item');
+  const { id, title, body, media = {}, created, tags = [], author } = blogData;
 
-  // Create image container
+  // Main container
+  const blogItem = document.createElement("div");
+  blogItem.classList.add("single-blog-item", "carousel-item");
+
+  // Image container
   const imgContainer = document.createElement("div");
   imgContainer.className = "img-container";
+
   const imgElement = document.createElement("img");
   imgElement.src =
-    media && media.url
-      ? media.url
-      : "https://media.istockphoto.com/id/1356933529/photo/futuristic-technology-wave-digital-cyberspace-abstract-wave-with-moving-particles-on.jpg?s=2048x2048&w=is&k=20&c=mQlLO3TqcbeiYTZPiCmsc0Tff-hIGsYwEFzCu272T8M="; // Set image source, fallback to empty if not provided
+    media.url ||
+    "https://media.istockphoto.com/id/1356933529/photo/futuristic-technology-wave-digital-cyberspace-abstract-wave-with-moving-particles-on.jpg?s=2048x2048&w=is&k=20&c=mQlLO3TqcbeiYTZPiCmsc0Tff-hIGsYwEFzCu272T8M=";
   imgElement.alt =
-    media && media.alt
-      ? media.alt
-      : "technology-wave-digital-cyberspace-abstract-wave-with-moving-particles";
+    media.alt ||
+    "technology-wave-digital-cyberspace-abstract-wave-with-moving-particles";
 
-  // Safely check if media.alt is available before using it
-  
   imgContainer.appendChild(imgElement);
 
-  // Create tags and date container
+  // Tags and date container
   const tagsDate = document.createElement("div");
   tagsDate.className = "tags-date";
-  const tagsP = document.createElement("p");
-  tagsP.textContent = `Tags: ${tags}`;
+
   const dateP = document.createElement("p");
-  dateP.textContent = created.slice(0, 10);
+  dateP.textContent = created?.slice(0, 10) || "Unknown Date";
+
+  const tagsP = document.createElement("p");
+  tagsP.textContent = tags.length ? `Tags: ${tags.join(", ")}` : "No tags";
+
   tagsDate.appendChild(dateP);
   tagsDate.appendChild(tagsP);
 
-  // Create title
+  // Title element
   const blogTitle = document.createElement("h3");
-  blogTitle.textContent = title;
-  const blogBody = document.createElement("p");
-  blogBody.textContent = 'test';
+  blogTitle.textContent = title || "Untitled";
 
-  // Create read more button
+  // Body preview (optional, can be customized)
+  const blogBody = document.createElement("p");
+  blogBody.textContent = body ? `${body.slice(0, 100)}...` : "";
+
+  // Read more button
   const readMoreButton = document.createElement("button");
   readMoreButton.className = "read-more";
   readMoreButton.textContent = "Read more";
-  readMoreButton.onclick = function () {
+  readMoreButton.addEventListener("click", () => {
     window.location.href = `/post/index.html?id=${id}`;
-  };
+  });
 
-  // Append elements to the blog item container
+  // Append elements to blog item
   blogItem.appendChild(imgContainer);
   blogItem.appendChild(tagsDate);
   blogItem.appendChild(blogTitle);
+  blogItem.appendChild(blogBody);
   blogItem.appendChild(readMoreButton);
-
-  // Append blog item to the main blog container
 
   return blogItem;
 }
-
-
-// 
