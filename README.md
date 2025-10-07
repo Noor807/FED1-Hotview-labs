@@ -115,9 +115,9 @@ npm run dev
 ## 📬 Contact  
 
 - 👤 **Author:** Noor Irfan  
-- 📧 **Email:** [your-email@example.com](mailto:your-email@example.com)  
+- 📧 **Email:** [iffijan34@yahoo.com](iffijan34*yahoo.com)  
 - 🌐 **Portfolio:** [your-portfolio-link](#)  
-- 💼 **LinkedIn:** [your-linkedin-profile](#)  
+- 💼 **LinkedIn:** [linkedin-profile](https://www.linkedin.com/in/noor-irfan-03b2202a2/)  
 
 
 
